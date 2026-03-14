@@ -1,132 +1,66 @@
-export default function Footer() {
-  const currentYear = new Date().getFullYear();
+import React from 'react';
+import { MapPin, Clock, Phone, Mail } from 'lucide-react';
 
-  const footerLinks = {
-    services: [
-      { name: 'Tax Preparation', href: '#services' },
-      { name: 'Financial Auditing', href: '#services' },
-      { name: 'Business Advisory', href: '#services' },
-      { name: 'Payroll Management', href: '#services' },
-      { name: 'Bookkeeping', href: '#services' },
-    ],
-    company: [
-      { name: 'About Us', href: '#about' },
-      { name: 'Internship Program', href: '#internship' },
-      { name: 'Testimonials', href: '#testimonials' },
-      { name: 'Contact', href: '#contact' },
-    ],
-    legal: [
-      { name: 'Privacy Policy', href: '#' },
-      { name: 'Terms of Service', href: '#' },
-      { name: 'Cookie Policy', href: '#' },
-    ],
-  };
-
-  const socialLinks = [
-    { name: 'LinkedIn', icon: 'linkedin', href: '#' },
-    { name: 'Twitter', icon: 'twitter', href: '#' },
-    { name: 'Facebook', icon: 'facebook', href: '#' },
-  ];
-
+const Footer: React.FC = () => {
   return (
-    <footer className="bg-navy text-white">
-      <div className="container-custom py-16">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
-          {/* Company Info */}
+    <footer className="bg-(--color-primary) text-(--color-text-light) mt-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* About */}
           <div>
-            <div className="flex items-center space-x-2 mb-4">
-              <div className="w-10 h-10 bg-gold rounded-lg flex items-center justify-center">
-                <span className="text-navy text-xl font-bold" style={{ fontFamily: 'var(--font-heading)' }}>V</span>
-              </div>
-              <span className="text-2xl font-bold" style={{ fontFamily: 'var(--font-heading)' }}>Vonketa</span>
-            </div>
-            <p className="text-gray-300 mb-6">
-              Your trusted partner for comprehensive accounting and financial advisory services.
+            <h3 className="text-xl font-bold mb-4">About NaijaProvisions</h3>
+            <p className="text-(--color-accent-light) leading-relaxed">
+              Your trusted source for quality rice, beans, yams, and groceries. 
+              We bring fresh provisions straight from local farmers to your doorstep.
             </p>
-            <div className="flex gap-4">
-              {socialLinks.map((social) => (
-                <a
-                  key={social.name}
-                  href={social.href}
-                  className="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-gold hover:text-navy transition-colors duration-300"
-                  aria-label={social.name}
-                >
-                  <span className="text-lg font-bold">{social.icon[0].toUpperCase()}</span>
-                </a>
-              ))}
+          </div>
+
+          {/* Contact Info */}
+          <div>
+            <h3 className="text-xl font-bold mb-4">Contact Us</h3>
+            <div className="space-y-3">
+              <div className="flex items-start gap-3">
+                <MapPin size={20} className="mt-1 flex-shrink-0" />
+                <p className="text-(--color-accent-light)">
+                  123 Market Street, Ikeja, Lagos, Nigeria
+                </p>
+              </div>
+              <div className="flex items-center gap-3">
+                <Phone size={20} className="flex-shrink-0" />
+                <p className="text-(--color-accent-light)">+234 801 234 5678</p>
+              </div>
+              <div className="flex items-center gap-3">
+                <Mail size={20} className="flex-shrink-0" />
+                <p className="text-(--color-accent-light)">info@naijaprovisions.com</p>
+              </div>
             </div>
           </div>
 
-          {/* Services */}
+          {/* Business Hours */}
           <div>
-            <h3 className="text-lg font-bold mb-4 text-gold" style={{ fontFamily: 'var(--font-heading)' }}>
-              Services
-            </h3>
-            <ul className="space-y-3">
-              {footerLinks.services.map((link) => (
-                <li key={link.name}>
-                  <a
-                    href={link.href}
-                    className="text-gray-300 hover:text-gold transition-colors duration-300"
-                  >
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Company */}
-          <div>
-            <h3 className="text-lg font-bold mb-4 text-gold" style={{ fontFamily: 'var(--font-heading)' }}>
-              Company
-            </h3>
-            <ul className="space-y-3">
-              {footerLinks.company.map((link) => (
-                <li key={link.name}>
-                  <a
-                    href={link.href}
-                    className="text-gray-300 hover:text-gold transition-colors duration-300"
-                  >
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Legal */}
-          <div>
-            <h3 className="text-lg font-bold mb-4 text-gold" style={{ fontFamily: 'var(--font-heading)' }}>
-              Legal
-            </h3>
-            <ul className="space-y-3">
-              {footerLinks.legal.map((link) => (
-                <li key={link.name}>
-                  <a
-                    href={link.href}
-                    className="text-gray-300 hover:text-gold transition-colors duration-300"
-                  >
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
+            <h3 className="text-xl font-bold mb-4">Business Hours</h3>
+            <div className="space-y-2">
+              <div className="flex items-start gap-3">
+                <Clock size={20} className="mt-1 flex-shrink-0" />
+                <div className="text-(--color-accent-light)">
+                  <p className="font-semibold">Monday - Saturday</p>
+                  <p>8:00 AM - 8:00 PM</p>
+                  <p className="font-semibold mt-2">Sunday</p>
+                  <p>10:00 AM - 6:00 PM</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Bottom Bar */}
-        <div className="pt-8 border-t border-white/10">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-gray-400">
-            <p>
-              © {currentYear} Vonketa Financial Services. All rights reserved.
-            </p>
-            <p>
-              Designed with <span className="text-gold">♥</span> for financial excellence
-            </p>
-          </div>
+        <div className="border-t border-(--color-primary-light) mt-8 pt-6 text-center">
+          <p className="text-(--color-accent-light)">
+            © {new Date().getFullYear()} NaijaProvisions. All rights reserved.
+          </p>
         </div>
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;
