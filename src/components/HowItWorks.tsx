@@ -5,18 +5,18 @@ const HowItWorks: React.FC = () => {
   const steps = [
     {
       icon: Search,
-      title: 'Browse Products',
-      description: 'Explore our fresh selection of rice, beans, yams, and groceries',
+      title: 'Discover Services',
+      description: 'Explore our digital marketing solutions and services',
     },
     {
       icon: MessageCircle,
-      title: 'Order on WhatsApp',
-      description: 'Click "Order via WhatsApp" and send us your order details',
+      title: 'Free Consultation',
+      description: 'Book a free strategy call with our expert team',
     },
     {
       icon: Package,
-      title: 'Receive Delivery',
-      description: 'Get your fresh provisions delivered to your doorstep',
+      title: 'Launch Your Campaign',
+      description: 'Get your marketing campaigns live and optimized',
     },
   ];
 

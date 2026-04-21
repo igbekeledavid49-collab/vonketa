@@ -1,0 +1,67 @@
+// This is your Prisma schema file
+// Learn more: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String         @id @default(cuid())
+  name          String
+  email         String         @unique
+  passwordHash  String
+  role          Role           @default(USER)
+  isVerified    Boolean        @default(false)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+
+  refreshTokens RefreshToken[]
+  projects      Project[]
+  passwordResets PasswordReset[]
+}
+
+model RefreshToken {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}
+
+model PasswordReset {
+  id        String   @id @default(cuid())
+  token     String   @unique
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  expiresAt DateTime
+  used      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model Project {
+  id          String        @id @default(cuid())
+  title       String
+  description String?
+  status      ProjectStatus @default(ACTIVE)
+  userId      String
+  user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+enum ProjectStatus {
+  ACTIVE
+  PAUSED
+  COMPLETED
+}

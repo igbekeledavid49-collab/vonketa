@@ -1,6 +1,6 @@
 import type { Product } from '../types';
 
-const STORAGE_KEY = 'provisions_store_products';
+const STORAGE_KEY = 'positivus_products';
 
 export const loadProducts = (): Product[] | null => {
   try {

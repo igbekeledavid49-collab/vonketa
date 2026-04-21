@@ -8,10 +8,10 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {/* About */}
           <div>
-            <h3 className="text-xl font-bold mb-4">About NaijaProvisions</h3>
+            <h3 className="text-xl font-bold mb-4">About Positivus</h3>
             <p className="text-(--color-accent-light) leading-relaxed">
-              Your trusted source for quality rice, beans, yams, and groceries. 
-              We bring fresh provisions straight from local farmers to your doorstep.
+              Digital marketing agency delivering results-driven campaigns. 
+              Transforming businesses with innovative strategies and creative excellence.
             </p>
           </div>
 
@@ -31,7 +31,7 @@ const Footer: React.FC = () => {
               </div>
               <div className="flex items-center gap-3">
                 <Mail size={20} className="flex-shrink-0" />
-                <p className="text-(--color-accent-light)">info@naijaprovisions.com</p>
+                <p className="text-(--color-accent-light)">hello@positivus.com</p>
               </div>
             </div>
           </div>

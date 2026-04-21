@@ -87,7 +87,7 @@ const CheckoutModal: React.FC<CheckoutModalProps> = ({ isOpen, onClose }) => {
                       <input
                         type="text"
                         name="name"
-                        value={formData.lastName}
+                        value={(formData as Record<string, string>)['lastName'] ?? ''}
                         onChange={handleInputChange}
                         className="w-full px-4 py-3 bg-(--color-bg-secondary) text-(--color-text) rounded-(--radius-md) border-2 border-(--color-electric-cyan) focus:outline-none focus:border-(--color-neon-violet) transition-colors"
                         placeholder="Last name (optional)"

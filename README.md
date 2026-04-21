@@ -1,79 +1,148 @@
-# Hacker News Top Stories
+# Positivus — Full-Stack Digital Marketing Site
 
-A modern, responsive web application that displays the top 100 stories from Hacker News using the Algolia HN API.
+A modern digital marketing agency website built with **React + Vite + Tailwind v4 + shadcn** on the frontend and **Node.js + Express + Prisma + PostgreSQL** on the backend.
 
-## Features
-
-- 📰 Displays top 100 stories from Hacker News
-- 🔍 Real-time search functionality to filter stories by title or author
-- ⚡ Skeleton loading placeholders for better UX
-- 🔗 Click "Read more" to open stories in a new tab
-- 📱 Responsive design that works on all devices
-- 🎨 Clean, modern UI with Hacker News orange branding
-
-## Tech Stack
-
-- **React 18** with TypeScript
-- **Vite** for fast development and building
-- **Tailwind CSS v4** for styling
-- **Algolia HN API** for fetching stories
-
-## Getting Started
+## 🚀 Quick Start
 
 ### Prerequisites
+- Node.js 20+
+- PostgreSQL 16+ (or Docker)
+- npm 10+
 
-- Node.js 20.19+ or 22.12+
-- npm, yarn, or pnpm
+---
 
-### Installation
+### Frontend
 
-1. Install dependencies:
 ```bash
+# Install dependencies
 npm install
-```
 
-2. Start the development server:
-```bash
+# Copy env file
+cp .env.example .env.local
+
+# Start dev server
 npm run dev
 ```
 
-3. Open your browser and navigate to `http://localhost:5173`
+Runs at: `http://localhost:5173`
 
-### Build for Production
+---
 
-```bash
-npm run build
-```
-
-The built files will be in the `dist` directory.
-
-### Preview Production Build
+### Backend
 
 ```bash
-npm run preview
+cd backend
+
+# Install dependencies
+npm install
+
+# Copy env file
+cp .env.example .env
+
+# Edit .env with your DATABASE_URL and JWT secrets
+
+# Run database migrations
+npm run db:migrate
+
+# Start dev server
+npm run dev
 ```
 
-## Project Structure
+API runs at: `http://localhost:4000/api`
+
+---
+
+### Docker (Full-stack)
+
+```bash
+# Copy env files
+cp .env.example .env.local
+cp backend/.env.example backend/.env
+
+# Start all services (PostgreSQL + API)
+docker-compose up -d
+
+# Run migrations
+docker-compose exec api npx prisma migrate deploy
+```
+
+---
+
+## 📁 Project Structure
 
 ```
-src/
-├── components/
-│   ├── Header.tsx          # App header with branding
-│   ├── SearchBar.tsx       # Search input component
-│   ├── StoryCard.tsx       # Individual story display
-│   └── SkeletonCard.tsx    # Loading placeholder
-├── types.ts                # TypeScript type definitions
-├── App.tsx                 # Main application component
-├── main.tsx               # Application entry point
-└── index.css              # Global styles and Tailwind imports
+├── src/                    # React frontend
+│   ├── components/
+│   │   ├── layout/         # Navbar, Footer
+│   │   └── sections/       # Landing page sections
+│   ├── pages/
+│   │   ├── auth/           # Login, Register, ForgotPassword
+│   │   └── dashboard/      # Protected dashboard pages
+│   ├── store/              # Zustand auth store
+│   ├── lib/                # API fetch wrapper
+│   └── router/             # React Router + guards
+├── backend/
+│   ├── src/
+│   │   ├── controllers/    # Auth, Project controllers
+│   │   ├── middleware/     # JWT auth, Zod validation, error handler
+│   │   ├── routes/         # Express routes
+│   │   ├── schemas/        # Zod schemas
+│   │   └── utils/          # JWT, bcrypt, email helpers
+│   └── prisma/
+│       └── schema.prisma   # DB models: User, RefreshToken, Project
+├── docker-compose.yml
+└── .env.example
 ```
 
-## API
+---
 
-This app uses the [Algolia Hacker News API](https://hn.algolia.com/api):
-- Endpoint: `https://hn.algolia.com/api/v1/search?tags=front_page&hitsPerPage=100`
-- Returns the top 100 front page stories
+## 🔐 Auth Endpoints
 
-## License
+| Method | Endpoint | Auth | Description |
+|--------|----------|------|-------------|
+| POST | `/api/auth/register` | — | Create account |
+| POST | `/api/auth/login` | — | Login → access + refresh token |
+| POST | `/api/auth/refresh` | refresh token | Rotate token pair |
+| POST | `/api/auth/logout` | JWT | Invalidate refresh token |
+| GET | `/api/auth/me` | JWT | Get current user |
+| POST | `/api/auth/forgot-password` | — | Send reset email |
+| POST | `/api/auth/reset-password` | — | Reset with token |
 
-MIT
+## 📊 Project Endpoints
+
+| Method | Endpoint | Auth | Description |
+|--------|----------|------|-------------|
+| GET | `/api/projects` | JWT | List user projects |
+| POST | `/api/projects` | JWT | Create project |
+| PATCH | `/api/projects/:id` | JWT | Update project |
+| DELETE | `/api/projects/:id` | JWT | Delete project |
+
+---
+
+## 🎨 Design System
+
+- **Primary**: `#B9FF66` (Acidic Green)
+- **Background**: `#0A0A0A`
+- **Cards**: `#141414`
+- **Font**: Geist Variable
+- **Component Library**: shadcn (Tailwind v4)
+- **Animations**: Framer Motion (respects `prefers-reduced-motion`)
+
+---
+
+## 🛠 Tech Stack
+
+| Layer | Technology |
+|-------|------------|
+| Frontend | React 18 + Vite + TypeScript |
+| Styling | Tailwind CSS v4 + shadcn |
+| Animation | Framer Motion |
+| State | Zustand |
+| Routing | React Router v7 |
+| Backend | Node.js + Express |
+| ORM | Prisma |
+| Database | PostgreSQL |
+| Auth | JWT + bcrypt + refresh token rotation |
+| Validation | Zod |
+| Email | Nodemailer |
+| DevOps | Docker + docker-compose |
