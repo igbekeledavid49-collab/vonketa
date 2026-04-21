@@ -1,15 +1,14 @@
 import { createBrowserRouter } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
-import { ProtectedRoute } from './ProtectedRoute';
 
 const HomePage = lazy(() => import('@/pages/HomePage'));
 const LoginPage = lazy(() => import('@/pages/auth/LoginPage'));
 const RegisterPage = lazy(() => import('@/pages/auth/RegisterPage'));
-// TODO: Fix dashboard paths or create files
-// const DashboardLayout = lazy(() => import('@/pages/dashboard/DashboardLayout'));
-// const DashboardHome = lazy(() => import('@/pages/dashboard/DashboardHome'));
-// const ProjectsPage = lazy(() => import('@/pages/dashboard/ProjectsPage'));
-// const SettingsPage = lazy(() => import('@/pages/dashboard/SettingsPage'));
+const ForgotPasswordPage = lazy(() => import('@/pages/auth/ForgotPasswordPage'));
+const DashboardLayout = lazy(() => import('@/pages/dashboard/DashboardLayout'));
+const DashboardHome = lazy(() => import('@/pages/dashboard/DashboardHome'));
+const ProjectsPage = lazy(() => import('@/pages/dashboard/ProjectsPage'));
+const SettingsPage = lazy(() => import('@/pages/dashboard/SettingsPage'));
 
 function PageLoader() {
   return (
@@ -27,32 +26,33 @@ function withSuspense(Component: React.ComponentType) {
   );
 }
 
-export const router = createBrowserRouter([
-  {
-    path: '/',
-    element: withSuspense(HomePage),
-  },
-  {
-    path: '/login',
-    element: withSuspense(LoginPage),
-  },
-  {
-    path: '/register',
-    element: withSuspense(RegisterPage),
-  },
-  // TODO: Dashboard routes commented (missing files)
-  // {
-  //   element: <ProtectedRoute />,
-  //   children: [
-  //     {
-  //       path: '/dashboard',
-  //       element: withSuspense(DashboardLayout),
-  //       children: [
-  //         { index: true, element: withSuspense(DashboardHome) },
-  //         { path: 'projects', element: withSuspense(ProjectsPage) },
-  //         { path: 'settings', element: withSuspense(SettingsPage) },
-  //       ],
-  //     },
-  //   ],
-  // },
-]);
+export const router = createBrowserRouter(
+  [
+    {
+      path: '/',
+      element: withSuspense(HomePage),
+    },
+    {
+      path: '/login',
+      element: withSuspense(LoginPage),
+    },
+    {
+      path: '/register',
+      element: withSuspense(RegisterPage),
+    },
+    {
+      path: '/forgot-password',
+      element: withSuspense(ForgotPasswordPage),
+    },
+    {
+      path: '/dashboard',
+      element: withSuspense(DashboardLayout),
+      children: [
+        { index: true, element: withSuspense(DashboardHome) },
+        { path: 'projects', element: withSuspense(ProjectsPage) },
+        { path: 'settings', element: withSuspense(SettingsPage) },
+      ],
+    },
+  ],
+  { basename: import.meta.env.BASE_URL }
+);

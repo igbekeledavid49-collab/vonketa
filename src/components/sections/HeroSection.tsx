@@ -2,7 +2,6 @@ import { useRef } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight, TrendingUp, Users, Award } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 
 const STATS = [
   { value: '200+', label: 'Clients worldwide', icon: Users },

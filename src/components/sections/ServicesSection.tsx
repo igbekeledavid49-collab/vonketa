@@ -6,6 +6,7 @@ type CardVariant = 'dark' | 'green' | 'gray';
 interface Service {
   icon: React.ComponentType<{ className?: string }>;
   title: string;
+  description: string;
   variant: CardVariant;
 }
 
@@ -13,31 +14,37 @@ const SERVICES: Service[] = [
   {
     icon: Search,
     title: 'Search engine optimization',
+    description: 'Boost your rankings and drive organic traffic with data-driven SEO audits, keyword strategy, and on-page optimization.',
     variant: 'dark',
   },
   {
     icon: MousePointerClick,
     title: 'Pay-per-click advertising',
+    description: 'Maximize ROI with precisely targeted Google and Meta ad campaigns that convert clicks into customers.',
     variant: 'green',
   },
   {
     icon: Share2,
     title: 'Social Media Marketing',
+    description: 'Grow your audience and build brand loyalty through engaging content and community management across all platforms.',
     variant: 'gray',
   },
   {
     icon: Mail,
     title: 'Email Marketing',
+    description: 'Nurture leads and retain customers with personalized email sequences that deliver measurable results.',
     variant: 'green',
   },
   {
     icon: FileText,
     title: 'Content Creation',
+    description: 'From blog posts to video scripts, we craft compelling content that positions you as an industry authority.',
     variant: 'dark',
   },
   {
     icon: BarChart3,
     title: 'Analytics & Tracking',
+    description: 'Turn raw data into strategic insights with custom dashboards and reporting that inform every decision.',
     variant: 'gray',
   },
 ];
