@@ -1,4 +1,4 @@
-name: Deploy Positivus to GitHub Pages
+name: Deploy to GitHub Pages
 
 on:
   push:
@@ -32,10 +32,8 @@ jobs:
 
       - name: Build
         run: npm run build
-        env:
-          VITE_API_URL: ${{ secrets.VITE_API_URL || 'http://localhost:4000/api' }}
 
-      - name: Upload Pages artifact
+      - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: dist
@@ -50,3 +48,4 @@ jobs:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
+

@@ -9,9 +9,9 @@ import { Label } from '@/components/ui/label';
 import type { ContactFormData } from '@/types';
 
 const CONTACT_INFO = [
-  { icon: Mail, label: 'Email', value: 'hello@positivus.com' },
-  { icon: Phone, label: 'Phone', value: '+1 (555) 123-4567' },
-  { icon: MapPin, label: 'Office', value: '405 Lexington Ave, New York, NY 10174' },
+  { icon: Mail, label: 'Email', value: 'info@positivus.com' },
+  { icon: Phone, label: 'Phone', value: '+123 12-3456-7890' },
+  { icon: MapPin, label: 'address', value: ' 1234 Main StMoonstone City, Stardust State 12345' },
 ];
 
 const SUBJECTS: Array<{ value: ContactFormData['subject']; label: string }> = [
